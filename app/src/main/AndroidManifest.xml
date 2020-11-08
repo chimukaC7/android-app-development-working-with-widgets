@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.helloworld">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <!--widget -->
+        <receiver android:name=".Test">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/test_info" />
+        </receiver>
+        <!--end of widget-->
+
+
+        <!--
+         it is basically the ability to add quick shortcuts to the icon of your application.
+         Like quickly contact a specific person in a contact application.
+         So in-app widgets is the basically the ability to pin your widget into these shortcuts. This way, instead of having your widget on your homepage you could have the widget as a shortcut inside of your application launcher
+        -->
+        <!--
+        in order to do this, first you need to make sure you're developing for Android 8 or above, which is API level 26 or above.
+        You need to first make sure your widget is declared in your application manifest,
+         -->
+
+        <!--pinning app updates-->
+        <receiver android:name=".MyAppWidgetProvider">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider"
+                android:resource="@xml/my_appwidget_info"/>
+        </receiver>
+        <!--end of pinning app updates-->
+
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
